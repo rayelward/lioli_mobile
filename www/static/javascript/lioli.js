@@ -102,6 +102,7 @@ var entrySubmit = function() {
 //gets the entry
 //
 var getTheEntry = function() {
+	$('#get-entry)').button('disable');
 	$('#entryDetails').replaceWith('<div id="entryDetails"><span id="entry-loves"></span><span id="entry-leaves"></span><span id="entry-age"></span><span id="entry-gender"></span><span id="entry-body"></span></div>');
 	var inId = $('#ID').val();
 	if (inId.length != 0) {
@@ -119,6 +120,7 @@ var getTheEntry = function() {
 	}else {
 		//nothing in the entry. do nothing.
 	}
+	$('#get-entry)').button('enable');
 }
 
 //checks if a varible has been set.  JS version of a php function
