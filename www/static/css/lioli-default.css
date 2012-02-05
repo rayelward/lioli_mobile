@@ -34,3 +34,36 @@
 	float: right;
 	padding-right: 10px;
 }
+
+/*for nav bar icons */
+.nav-lioli .ui-btn .ui-icon { 
+	width: 30px!important; 
+	height: 30px!important; 
+	margin-left: -15px !important; 
+	margin-top: -5px !important;
+	box-shadow: none!important; 
+	-moz-box-shadow: none!important; 
+	-webkit-box-shadow: none!important; 
+	-webkit-border-radius: 0 !important; 
+	border-radius: 0 !important; 
+} 
+#recents .ui-icon { 
+	background:  url(../images/heart@2x.png) 50% 50% no-repeat; 
+	background-size: 25px 20px; 
+}
+#random .ui-icon { 
+	background:  url(../images/brokenHeart.png) 50% 50% no-repeat; 
+	background-size: 24px 19px;  
+}
+#search .ui-icon { 
+	background:  url() 50% 50% no-repeat;  
+	background-size: 25px 20px; 
+}
+#submit .ui-icon { 
+	background:  url(../images/submit@2x.png) 50% 50% no-repeat;  
+	background-size: 25px 25px; 
+}
+#about .ui-icon { 
+	background:  url(../images/question-mark@2x.png) 50% 50% no-repeat;  
+	background-size: 25px 20px;
+} 

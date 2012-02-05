@@ -134,10 +134,11 @@ function isset(variable)
     return (typeof(variable) != 'undefined');
 }
 
-//set up once everything is loaded.
-//
-$(function() {
+
+$(document).bind("mobileinit", function(){
 	//allowing cross site access to lioli.net!
 	$.support.cors = true;
-	
+	//turn of back button.
+	$.mobile.page.prototype.options.addBackBtn= false;
+
 });

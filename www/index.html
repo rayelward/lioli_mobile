@@ -1,12 +1,17 @@
 <!DOCTYPE html> 
 <html> 
 	<head> 
-	<title>Love it or Leave it</title> 
+	<title>LIOLI</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-<!-- this is the part responsible for hidding the bottom bar -->
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<!-- this is the part responsible for formatting for iOS non-native. -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon.png">
+	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+	<!-- For nokia devices: -->
+	<link rel="shortcut icon" href="apple-touch-icon.png">
 	
 	<link href="jquery-mobile/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css"/>
 	<script src="jquery-mobile/jquery-1.5.min.js" type="text/javascript"></script>
@@ -21,7 +26,7 @@
 <!-- Start recents page. -->
 <div data-role="page" id="page-recents" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
-	<div data-role="navbar" class="nav-lioli" data-grid="d">
+		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
 				<li><a href="#page-recents" class='ui-btn-active ui-state-persist' id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
 				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
@@ -43,7 +48,7 @@
 <!-- start of random page -->
 <div data-role="page" id="page-random" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
-	<div data-role="navbar" class="nav-lioli" data-grid="d">
+		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
 				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
 				<li><a href="#page-random" class='ui-btn-active ui-state-persist' id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
@@ -65,7 +70,7 @@
 <!-- start of search page -->
 <div data-role="page" id="page-search" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
-	<div data-role="navbar" class="nav-lioli" data-grid="d">
+		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
 				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
 				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
@@ -101,7 +106,7 @@
 <!-- start of submit page -->
 <div data-role="page" id="page-submit" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
-	<div data-role="navbar" class="nav-lioli" data-grid="d">
+		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
 				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
 				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
@@ -141,7 +146,7 @@
 <!-- start of about page -->
 <div data-role="page" id="page-about" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
-	<div data-role="navbar" class="nav-lioli" data-grid="d">
+		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
 				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
 				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
