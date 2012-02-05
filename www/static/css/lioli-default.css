@@ -1,11 +1,12 @@
 @charset "UTF-8";
 /* CSS Document */
 
+
 @font-face {
-	font-family: Arial_Rounded_Bold;
-	src: url("static/font/Arial_Rounded_Bold.eot"); /* EOT file for IE */
-	src: local("Arial Rounded Bold"), local("Arial-Rounded-Bold"), url("static/font/Arial_Rounded_Bold.ttf") format('truetype'); /* TTF file for CSS3 browsers */
+	font-family:Arial_Rounded_Bold;
+	src:url("../font/Arial_Rounded_Bold.eot"); /* EOT file for IE */
+	src:local("Arial Rounded Bold"), local("Arial-Rounded-Bold"), url("../font/Arial_Rounded_Bold.ttf") format('truetype'); /* TTF file for CSS3 browsers */
 }
-.ui-page {
-	font-family: Arial_Rounded_Bold, Arial, Helvetica, sans-serif;
+.ui-body-a, .ui-body-a input, .ui-body-a select, .ui-body-a textarea, .ui-body-a button .ui-body {
+	font-family:Arial_Rounded_Bold, Arial, Helvetica, sans-serif;
 }

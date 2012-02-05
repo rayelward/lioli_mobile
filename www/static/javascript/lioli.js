@@ -94,7 +94,7 @@ var entrySubmit = function() {
 			$('#submitResponse').text('Thank you.  Your id is '+id+'. Your entry awaits moderator approval.');
 		});
 	} else {
-		$('#submitResponse').text('<p>Please fill out all the forms to submit.</p>');
+		$('#submitResponse').text('Please fill out all the forms to submit.');
 	}
 	$('#entry-submit').button('enable');
 }
