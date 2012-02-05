@@ -75,26 +75,28 @@ var lioli = {
 //Validate submission data then sends it via ajax and responds with the unique_id
 //
 var entrySubmit = function() {
-	$('#errorSubmit').replaceWith('<span id="errorSubmit"></span>');
+	//hide submit button until request is done
+	$('#entry-submit').button('disable');
+	$('#submitResponse').text('');
 	var inBody = $('#body').val();
 	var inAge = $('#age').val();
 	var inGender = $('input:radio:checked').val();
-	if (inBody.length > 1500) {
-		$('#errorSubmit').replaceWith('<span id="errorSubmit">Your entry is too long, please keep it under 1500 characters.</span>');
+	if (inBody.length > 1200) {
+		$('#submitResponse').text('Your entry is too long, please keep it under 1200 characters.');
+		$('#entry-submit').button('enable');
 		return;
 	}
-	//hide submit button until request is done
-	$('#entry-submit').hide();
-	//validate:
+	
+	//validate
 	if ((isset(inBody) && isset(inAge) && isset(inGender)) && inBody.length != 0){
 		lioli.submitEntry(inBody, inAge, inGender, function(data) {
 			var id = data.unique_id;
-			$('#errorSubmit').replaceWith('<span id="errorSubmit"><p>Thank you.  Your id is '+id+'. Your entry awaits moderator approval.</p></span>');
+			$('#submitResponse').text('Thank you.  Your id is '+id+'. Your entry awaits moderator approval.');
 		});
 	} else {
-		$('#errorSubmit').replaceWith('<span id="errorSubmit"><p>Please fill out all the forms to submit.</p></span>');
+		$('#submitResponse').text('<p>Please fill out all the forms to submit.</p>');
 	}
-	$('#entry-submit').show();
+	$('#entry-submit').button('enable');
 }
 
 //gets the entry
@@ -128,7 +130,7 @@ function isset(variable)
 
 //set up once everything is loaded.
 //
-$(document).ready(function() {
+$(function() {
 	//allowing cross site access to lioli.net!
 	$.support.cors = true;
 	
