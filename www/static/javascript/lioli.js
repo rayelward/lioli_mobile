@@ -7,7 +7,7 @@ var lioli = {
 	//
 	getEntryById: function(id, callback) {
 		$.ajax({
-			url: baseUrl + "get_entry/" + id,
+			url: baseUrl + "get_entry/" + escape(id),
 			cache: false,
 			success: function(data) {
 				callback(data);
@@ -64,8 +64,8 @@ var lioli = {
 		$.ajax({
 			url: baseUrl + "submit/",
 			cache: false,
-			type: "POST",
-			data: "body="+body+"&age="+age+"&gender="+gender,
+			type: "GET",
+			data: "body="+escape(body)+"&age="+age+"&gender="+gender,
 			success: function(data) {
 				callback(data);
 			}
@@ -79,7 +79,12 @@ var entrySubmit = function() {
 	var inBody = $('#body').val();
 	var inAge = $('#age').val();
 	var inGender = $('input:radio:checked').val();
-	$('#body').val('');
+	if (inBody.length > 1500) {
+		$('#errorSubmit').replaceWith('<span id="errorSubmit">Your entry is too long, please keep it under 1500 characters.</span>');
+		return;
+	}
+	//hide submit button until request is done
+	$('#entry-submit').hide();
 	//validate:
 	if ((isset(inBody) && isset(inAge) && isset(inGender)) && inBody.length != 0){
 		lioli.submitEntry(inBody, inAge, inGender, function(data) {
@@ -89,7 +94,7 @@ var entrySubmit = function() {
 	} else {
 		$('#errorSubmit').replaceWith('<span id="errorSubmit"><p>Please fill out all the forms to submit.</p></span>');
 	}
-	
+	$('#entry-submit').show();
 }
 
 //gets the entry
@@ -120,3 +125,11 @@ function isset(variable)
 {
     return (typeof(variable) != 'undefined');
 }
+
+//set up once everything is loaded.
+//
+$(document).ready(function() {
+	//allowing cross site access to lioli.net!
+	$.support.cors = true;
+	
+});
