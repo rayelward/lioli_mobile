@@ -1,12 +1,36 @@
 @charset "UTF-8";
 /* CSS Document */
-
-
+/*add in our favorite font*/
 @font-face {
 	font-family:Arial_Rounded_Bold;
-	src:url("../font/Arial_Rounded_Bold.eot"); /* EOT file for IE */
-	src:local("Arial Rounded Bold"), local("Arial-Rounded-Bold"), url("../font/Arial_Rounded_Bold.ttf") format('truetype'); /* TTF file for CSS3 browsers */
+	src:url("../font/Arial_Rounded_Bold.eot");
+	src:local("Arial Rounded Bold"), local("Arial-Rounded-Bold"), url("../font/Arial_Rounded_Bold.ttf") format('truetype');
 }
 .ui-body-a, .ui-body-a input, .ui-body-a select, .ui-body-a textarea, .ui-body-a button .ui-body {
 	font-family:Arial_Rounded_Bold, Arial, Helvetica, sans-serif;
+}
+/*Some styling for output of searching an entry.*/
+#entry-loves, .love-display {
+	color: #F3C;
+	display: inline-block;
+	float: left;
+	padding-left: 10px;
+}
+#entry-leaves, .leave-display {
+	color: #6FF;
+	display: inline-block;
+	float: right;
+	padding-right: 10px;
+}
+#entry-age, #entry-gender, .age-display, .gender-display {
+	color: #999;
+	display: inline-block;
+}
+#entry-age, .age-display {
+	float: left;
+	padding-left: 10px;
+}
+#entry-gender, .gender-display {
+	float: right;
+	padding-right: 10px;
 }

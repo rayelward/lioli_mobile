@@ -102,25 +102,29 @@ var entrySubmit = function() {
 //gets the entry
 //
 var getTheEntry = function() {
-	$('#get-entry)').button('disable');
-	$('#entryDetails').replaceWith('<div id="entryDetails"><span id="entry-loves"></span><span id="entry-leaves"></span><span id="entry-age"></span><span id="entry-gender"></span><span id="entry-body"></span></div>');
+	$('#get-entry').button('disable');
+	$('#entry-body').text("");
+	$('#entry-age').text("");
+	$('#entry-loves').text("");
+	$('#entry-leaves').text("");
+	$('#entry-gender').text("");
 	var inId = $('#ID').val();
 	if (inId.length != 0) {
 		lioli.getEntryById(inId, function(data) {
 			if (isset(data.wrongid)) {
-				$('#entry-body').replaceWith('<span id="entry-body">This entry was not found or has not been approved yet.</span>');
+				$('#entry-body').text('This entry was not found or has not been approved yet.');
 			} else {
-				$('#entry-body').replaceWith('<span id="entry-body">'+data.body+'</span>');
-				$('#entry-age').replaceWith('<span id="entry-age">Age:'+data.age+'</span>');
-				$('#entry-loves').replaceWith('<span id="entry-loves">Loves:'+data.loves+'</span>');
-				$('#entry-leaves').replaceWith('<span id="entry-leaves">Leaves:'+data.leaves+'</span>');
-				$('#entry-gender').replaceWith('<span id="entry-gender">Gender:'+data.gender+'</span>');
+				$('#entry-body').text(data.body);
+				$('#entry-age').text("Age: "+data.age);
+				$('#entry-loves').text("Loves: "+data.loves);
+				$('#entry-leaves').text("Leaves: "+data.leaves);
+				$('#entry-gender').text("Gender: "+data.gender);
 			}
 		});
 	}else {
 		//nothing in the entry. do nothing.
 	}
-	$('#get-entry)').button('enable');
+	$('#get-entry').button('enable');
 }
 
 //checks if a varible has been set.  JS version of a php function
