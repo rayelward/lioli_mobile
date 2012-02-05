@@ -1,0 +1,165 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Love it or Leave it</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	
+	<link href="jquery-mobile/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css"/>
+		
+	<script src="jquery-mobile/jquery-1.5.min.js" type="text/javascript"></script>
+	<script src="jquery-mobile/jquery.mobile-1.0a3.min.js" type="text/javascript"></script>
+	<!-- This reference to phonegap.js will allow for code hints as long as the current site has been configured as a mobile application. 
+		 To configure the site as a mobile application, go to Site -> Mobile Applications -> Configure Application Framework... -->
+	<script src="phonegap.js" type="text/javascript"></script>
+	<script src="static/javascript/lioli.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" id="page-recents">
+	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
+	<div data-role="navbar" class="nav-lioli" data-grid="d">
+			<ul>
+				<li><a href="#page-recents" class='ui-btn-active ui-state-persist' id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+	 
+
+	<div data-role="content">	
+		<p>Recents content?</p>
+	</div><!-- /content -->
+
+	
+</div><!-- /page -->
+
+<!-- start of random page -->
+<div data-role="page" id="page-random">
+	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
+	<div data-role="navbar" class="nav-lioli" data-grid="d">
+			<ul>
+				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#page-random" class='ui-btn-active ui-state-persist' id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+	 
+
+	<div data-role="content">	
+		<p>Random content?</p>
+	</div><!-- /content -->
+
+	
+</div><!-- /page -->
+
+<!-- start of search page -->
+<div data-role="page" id="page-search">
+	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
+	<div data-role="navbar" class="nav-lioli" data-grid="d">
+			<ul>
+				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#page-search" class='ui-btn-active ui-state-persist' id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+	 
+
+	<div data-role="content">
+		<div data-role="fieldcontain">
+			<label for="ID"></label>
+			<input type="text" name="ID" id="ID" value=""  placeholder="Enter unique ID"/>
+			<button onclick="getTheEntry();">Submit</button>
+		</div>	<!-- /input -->
+		<div id="entryDetails">
+			<span id="entry-loves"></span>
+			<span id="entry-leaves"></span>
+			<span id="entry-age"></span>
+			<span id="entry-gender"></span>
+			<span id="entry-body"></span>
+		</div><!-- entryDetails -->
+
+	</div><!-- /content -->
+
+
+</div><!-- /page -->
+
+<!-- start of submit page -->
+<div data-role="page" id="page-submit">
+	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
+	<div data-role="navbar" class="nav-lioli" data-grid="d">
+			<ul>
+				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#page-submit" class='ui-btn-active ui-state-persist' id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+	 
+
+	<div data-role="content">
+		<!-- form for getting submissions -->
+			<div data-role="fieldcontain">
+	    <fieldset data-role="controlgroup" data-type="horizontal">
+	     	<legend>Gender:</legend>
+	         	<input type="radio" name="radio-view" id="radio-female" value="F"  />
+	         	<label for="radio-female">Female</label>
+	         	<input type="radio" name="radio-view" id="radio-male" value="M"  />
+	         	<label for="radio-male">Male</label>
+	    </fieldset>
+	
+			<label for="age">Age:</label>
+   			<input type="range" name="age" id="age" value="25" min="12" max="120" step="1" />
+			<label for="body" class="ui-hidden-accessible"></label>
+			<textarea type="text" name="body" id="body" value="" placeholder="Enter your submission here"></textarea>
+			<button onclick="entrySubmit();">Submit</button>
+			</div>
+		<div id='answer'>
+			<span id="errorSubmit"></span>
+		</div>
+	</div><!-- /content -->
+
+	
+</div><!-- /page -->
+
+<!-- start of about page -->
+<div data-role="page" id="page-about">
+	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
+	<div data-role="navbar" class="nav-lioli" data-grid="d">
+			<ul>
+				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#page-about" class='ui-btn-active ui-state-persist' id="about" data-transition="fade" data-icon="custom">About</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+
+	
+
+	<div data-role="content">	
+		<p>LIOLI (love it or leave it) is an online forum for anonymously asking for relationship advice. Users can submit a brief statement about their relationship and the community can vote their opinion. LIOLI is 100% anonymous with a unique serial number system for users.</p>
+
+<p>Relationships can be complicated or confusing and it is hard to ask close friends or loved ones for advice. LIOLI provides a status quo perspective on dating issues.</p>
+
+<p>You will benefit from this application by passing time in the monotony of everyday life voyeuristically enjoying tales of anonymous peoples relationship troubles. Even more importantly this will make people feel better about their own relationships, or conversely make them feel worse about their current relationship and give them the courage to get out of something that may be bad for them.</p>
+		
+		<p>Email feedback to: <strong>feedback.lioli@gmail.com</strong></p>
+	</div><!-- /content -->
+
+	
+</div><!-- /page -->
+
+</body>
+</html>
