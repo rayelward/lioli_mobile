@@ -6,8 +6,11 @@
 
 	<!-- this is the part responsible for formatting for iOS non-native. -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon.png">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<link rel="apple-touch-icon-precomposed" href="static/images/lioli-icon3.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/lioli-icon3@2x.png">
+	<link rel="apple-touch-startup-image" href="static/images/DefaultSplashCrop.png" /> 
+	<link rel="apple-touch-startup-image" sizes="640×960" href="static/images/DefaultSplash@2xCrop.png" />
 	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
 	<!-- For nokia devices: -->
@@ -85,7 +88,7 @@
 	<div data-role="content">
 		<div data-role="fieldcontain">
 			<label for="ID"></label>
-			<input type="text" name="ID" id="ID" value=""  placeholder="Enter unique ID"/>
+			<input type="text" pattern="[0-9]*" name="ID" id="ID" value=""  placeholder="Enter unique ID"/>
 			<button id="get-entry"onclick="getTheEntry();">Submit</button>
 		</div>	<!-- /input -->
 		<div id="entryDetails">
