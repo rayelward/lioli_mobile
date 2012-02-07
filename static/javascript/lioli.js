@@ -138,7 +138,7 @@ function isset(variable)
 $(document).bind("mobileinit", function(){
 	//allowing cross site access to lioli.net!
 	$.support.cors = true;
-	//turn of back button.
+	//turn off back button.
 	$.mobile.page.prototype.options.addBackBtn= false;
 
 });
