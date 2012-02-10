@@ -135,6 +135,8 @@ function isset(variable)
 }
 
 
+
+//called when mobile is set up and ready to go.  Kinda like a $(document).ready(function(){});
 $(document).bind("mobileinit", function(){
 	//allowing cross site access to lioli.net!
 	$.support.cors = true;
