@@ -227,11 +227,11 @@ var randomEntries = Array();
 $('#randomPage').live('pageshow', function(event) {
 	$("div#randomPage").unbind('swipeleft');
 	$("div#randomPage").bind('swipeleft',function(event, ui){
-		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip', reverse: true});
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip'});
 	});
 	$("div#randomPage").unbind('swiperight');
 	$("div#randomPage").bind('swiperight',function(event, ui){
-		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip'});
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip', reverse: true});
 
 	});
 	
