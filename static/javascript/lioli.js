@@ -227,11 +227,12 @@ var randomEntries = Array();
 $('#randomPage').live('pageshow', function(event) {
 	$("div#randomPage").unbind('swipeleft');
 	$("div#randomPage").bind('swipeleft',function(event, ui){
-		$.mobile.loadPage("#randomPage", { transition: "flip"});
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip', reverse: true});
 	});
 	$("div#randomPage").unbind('swiperight');
 	$("div#randomPage").bind('swiperight',function(event, ui){
-		$.mobile.loadPage("#randomPage", { transition: "flip", reverse: true});
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip'});
+
 	});
 	
 	if (randomEntries.length == 0){
@@ -265,6 +266,9 @@ var setupRandomPage = function(entry) {
 		$('#randomForLeave').fadeOut('slow', function(){$('#randomLeaves').fadeIn('fast');});
 		$('#randomForLove').fadeOut('slow', function(){$('#randomLoves').fadeIn('fast');});
 		lioli.addLoves(entry.unique_id, function(data){$('#randomLoves').text("Loves: "+ data.newloves);});
+	});
+	$('#nextButton').click(function() {
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip'});
 	});
 }
 /*

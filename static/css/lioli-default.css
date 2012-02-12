@@ -30,7 +30,7 @@
 	float: left;
 	padding-left: 10px;
 }
-#entry-gender, .gender-display {
+#entry-gender, #nextButton, .gender-display {
 	float: right;
 	padding-right: 10px;
 }
