@@ -201,10 +201,8 @@ var setUpDetails = function(entry) {
 	$('#voteForLeave').click(function() {
 		lioli.addLeaves(entry.unique_id, function(data){
 			$('#voteLeaves').text("Leave: "+ data.newleaves);
-			$('#voteForLeave').hide();
-			$('#voteForLove').hide();
-			$('#voteLoves').show();
-			$('#voteLeaves').show();
+			$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
+			$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
 		});
 	});
 	$('#voteForLove').click(function() {
