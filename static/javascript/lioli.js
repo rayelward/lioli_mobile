@@ -121,26 +121,123 @@ var getTheEntry = function() {
 				$('#entry-gender').text("Gender: "+data.gender);
 			}
 		});
-	}else {
+	} else {
 		//nothing in the entry. do nothing.
 	}
 	$('#get-entry').button('enable');
 }
 
-//checks if a varible has been set.  JS version of a php function
+var recentEntries;
+var recentPageCount;
+var currentRecentEntry;
+//sets up the list of most recent entries.
 //
-function isset(variable)
-{
-    return (typeof(variable) != 'undefined');
+var injectMostRecents = function(entries) {
+	recentEntries = recentEntries.concat(entries);
+	$.each(entries, function(index, entry) {
+		entryNumber = (recentPageCount * 10) + index;
+		$('#recentsList').append('<li><a href="singleEntryPage.html?number=' + entryNumber + '" data-transition="pop"' +
+				'<p><strong>' + entry.body + '</strong></p>' +
+				'<p><em>Age:' + entry.age + ' Gender:' + entry.gender + '</em></p>' +
+				'<p><strong>ID:' + entry.unique_id + '</strong></p>' +
+				'</a></li>');
+	});
+	recentPageCount += 1;
+	$('#recentsList').append('<li><a onclick="updateRecents();"><h2>Load more</h2></a></li>');
+	$('#recentsList').listview('refresh');
+}
+//called when user asks to load more recent entries
+//
+var updateRecents = function() {
+	$('ul#recentsList li:last-child').remove();
+	lioli.getRecents(recentPageCount, injectMostRecents);
 }
 
 
+//init the recents page and we need to load it up with some data.
+//
+$("#recentsPage").live('pageinit', function(event) {
+	recentEntries = new Array();
+	recentPageCount = 0;
+	lioli.getRecents(recentPageCount, injectMostRecents);
+});
+//init with the individual pages.
+//
+$('#singleEntryPage').live('pageshow', function(event) {
+	var number = getUrlVars()["number"];
+	currentRecentEntry = number;
+	entry = recentEntries[number];
+	
+	$("div#singleEntryPage").unbind('swiperight');
+	$("div#singleEntryPage").unbind('swipeleft');
+	$("div#singleEntryPage").bind('swiperight',function(event, ui){
+		var newPageNumber = parseInt(number) - 1;
+		if ( isset(recentEntries[newPageNumber]) ){
+			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "flip"});
+		}
+	});
+	$("div#singleEntryPage").bind('swipeleft',function(event, ui){
+		var newPageNumber = parseInt(number) + 1;
+		if ( isset(recentEntries[newPageNumber]) ){
+			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "flip"});
+		}
+	});
+	setUpDetails(entry);
+});
 
+//set up individual page
+//
+var setUpDetails = function(entry) {
+	$('#voteId').text('ID: '+entry.unique_id);
+	$('#voteAge').text("Age: "+entry.age);
+	$('#voteGender').text("Gender: "+entry.gender);
+	$('#voteLoves').text("Loves: "+entry.loves);
+	$('#voteBody').text(entry.body);
+	$('#voteLeaves').text("Leave: " + entry.leaves);
+	
+	$('#voteLoves').hide();
+	$('#voteLeaves').hide();
+	
+	$('#voteForLeave').click(function() {
+		lioli.addLeaves(entry.unique_id, function(data){
+			$('#voteLeaves').text("Leave: "+ data.newleaves);
+			$('#voteForLeave').hide();
+			$('#voteForLove').hide();
+			$('#voteLoves').show();
+			$('#voteLeaves').show();
+		});
+	});
+	$('#voteForLove').click(function() {
+		lioli.addLoves(entry.unique_id, function(data){
+			$('#voteLoves').text("Loves: "+ data.newloves);
+			$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
+			$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
+		});
+	});
+}
+
+//checks if a varible has been set.  JS version of a php function
+//
+function isset(variable) {
+    return (typeof(variable) != 'undefined');
+}
+//helper to grab url varibles
+//
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 //called when mobile is set up and ready to go.  Kinda like a $(document).ready(function(){});
-$(document).bind("mobileinit", function(){
+//
+$(document).bind("mobileinit", function() {
 	//allowing cross site access to lioli.net!
 	$.support.cors = true;
-	//turn off back button.
-	$.mobile.page.prototype.options.addBackBtn= false;
-
+	$.mobile.touchOverflowEnabled = true;
 });

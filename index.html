@@ -16,48 +16,49 @@
 	<!-- For nokia devices: -->
 	<link rel="shortcut icon" href="apple-touch-icon.png">
 	
-	<link href="jquery-mobile/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css"/>
-	<script src="jquery-mobile/jquery-1.5.min.js" type="text/javascript"></script>
-	<script src="jquery-mobile/jquery.mobile-1.0a3.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 	<script src="phonegap.js" type="text/javascript"></script>
 	
 	<script src="static/javascript/lioli.js"></script>
+	
 	<link href="static/css/lioli-default.css" rel="stylesheet" type="text/css"/>
 </head> 
 <body> 
 
 <!-- Start recents page. -->
-<div data-role="page" id="page-recents" data-theme="a" data-content-theme="a">
+<div data-role="page" id="recentsPage" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
 		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
-				<li><a href="#page-recents" class='ui-btn-active ui-state-persist' id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
-				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
-				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
-				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
-				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+				<li><a href="#recentsPage" class='ui-btn-active ui-state-persist' id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#randomPage" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#searchPage" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#submitPage" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#aboutPage" id="about" data-transition="fade" data-icon="custom">About</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
 	 
 
 	<div data-role="content">	
-		<p>Recents content? hey look instant upload to server / down to phone.</p>
+		<ul id="recentsList" data-role="listview" ></ul>
 	</div><!-- /content -->
 
 	
 </div><!-- /page -->
 
 <!-- start of random page -->
-<div data-role="page" id="page-random" data-theme="a" data-content-theme="a">
+<div data-role="page" id="randomPage" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
 		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
-				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
-				<li><a href="#page-random" class='ui-btn-active ui-state-persist' id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
-				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
-				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
-				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+				<li><a href="#recentsPage" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#randomPage" class='ui-btn-active ui-state-persist' id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#searchPage" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#submitPage" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#aboutPage" id="about" data-transition="fade" data-icon="custom">About</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
@@ -71,15 +72,15 @@
 </div><!-- /page -->
 
 <!-- start of search page -->
-<div data-role="page" id="page-search" data-theme="a" data-content-theme="a">
+<div data-role="page" id="searchPage" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
 		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
-				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
-				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
-				<li><a href="#page-search" class='ui-btn-active ui-state-persist' id="search" data-transition="fade" data-icon="custom">Search</a></li>
-				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
-				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+				<li><a href="#recentsPage" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#randomPage" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#searchPage" class='ui-btn-active ui-state-persist' id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#submitPage" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#aboutPage" id="about" data-transition="fade" data-icon="custom">About</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
@@ -107,15 +108,15 @@
 </div><!-- /page -->
 
 <!-- start of submit page -->
-<div data-role="page" id="page-submit" data-theme="a" data-content-theme="a">
+<div data-role="page" id="submitPage" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
 		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
-				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
-				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
-				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
-				<li><a href="#page-submit" class='ui-btn-active ui-state-persist' id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
-				<li><a href="#page-about" id="about" data-transition="fade" data-icon="custom">About</a></li>
+				<li><a href="#recentsPage" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#randomPage" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#searchPage" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#submitPage" class='ui-btn-active ui-state-persist' id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#aboutPage" id="about" data-transition="fade" data-icon="custom">About</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
@@ -147,15 +148,15 @@
 </div><!-- /page -->
 
 <!-- start of about page -->
-<div data-role="page" id="page-about" data-theme="a" data-content-theme="a">
+<div data-role="page" id="aboutPage" data-theme="a" data-content-theme="a">
 	<div data-role='header' class="nav-lioli" data-id='lioli-header' data-position="fixed">
 		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
-				<li><a href="#page-recents" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
-				<li><a href="#page-random" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
-				<li><a href="#page-search" id="search" data-transition="fade" data-icon="custom">Search</a></li>
-				<li><a href="#page-submit" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
-				<li><a href="#page-about" class='ui-btn-active ui-state-persist' id="about" data-transition="fade" data-icon="custom">About</a></li>
+				<li><a href="#recentsPage" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
+				<li><a href="#randomPage" id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#searchPage" id="search" data-transition="fade" data-icon="custom">Search</a></li>
+				<li><a href="#submitPage" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
+				<li><a href="#aboutPage" class='ui-btn-active ui-state-persist' id="about" data-transition="fade" data-icon="custom">About</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
@@ -174,6 +175,7 @@
 
 	
 </div><!-- /page -->
+
 
 </body>
 </html>
