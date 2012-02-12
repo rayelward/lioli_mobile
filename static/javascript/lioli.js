@@ -1,5 +1,9 @@
-// JavaScript Document
-//
+// 	lioli.js
+//  Created by Raymond Elward
+//  February 2012
+/*
+ *needed for all connections 
+ */
 var baseUrl = "http://lioli.net/init/services/call/json/";
 
 var lioli = {
@@ -72,6 +76,9 @@ var lioli = {
 		});
 	}
 };
+/*
+ *needed for submitPage
+ */
 //Validate submission data then sends it via ajax and responds with the unique_id
 //
 var entrySubmit = function() {
@@ -98,7 +105,9 @@ var entrySubmit = function() {
 	}
 	$('#entry-submit').button('enable');
 }
-
+/*
+ *needed for searchPage
+ */
 //gets the entry
 //
 var getTheEntry = function() {
@@ -126,10 +135,11 @@ var getTheEntry = function() {
 	}
 	$('#get-entry').button('enable');
 }
-
+/*
+ *needed for recentsPage
+ */
 var recentEntries;
 var recentPageCount;
-var currentRecentEntry;
 //sets up the list of most recent entries.
 //
 var injectMostRecents = function(entries) {
@@ -165,7 +175,6 @@ $("#recentsPage").live('pageinit', function(event) {
 //
 $('#singleEntryPage').live('pageshow', function(event) {
 	var number = getUrlVars()["number"];
-	currentRecentEntry = number;
 	entry = recentEntries[number];
 	
 	$("div#singleEntryPage").unbind('swiperight');
@@ -173,13 +182,13 @@ $('#singleEntryPage').live('pageshow', function(event) {
 	$("div#singleEntryPage").bind('swiperight',function(event, ui){
 		var newPageNumber = parseInt(number) - 1;
 		if ( isset(recentEntries[newPageNumber]) ){
-			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "flip"});
+			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "slide", reverse: true});
 		}
 	});
 	$("div#singleEntryPage").bind('swipeleft',function(event, ui){
 		var newPageNumber = parseInt(number) + 1;
 		if ( isset(recentEntries[newPageNumber]) ){
-			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "flip"});
+			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "slide"});
 		}
 	});
 	setUpDetails(entry);
@@ -193,27 +202,74 @@ var setUpDetails = function(entry) {
 	$('#voteGender').text("Gender: "+entry.gender);
 	$('#voteLoves').text("Loves: "+entry.loves);
 	$('#voteBody').text(entry.body);
-	$('#voteLeaves').text("Leave: " + entry.leaves);
+	$('#voteLeaves').text("Leaves: " + entry.leaves);
 	
 	$('#voteLoves').hide();
 	$('#voteLeaves').hide();
 	
 	$('#voteForLeave').click(function() {
-		lioli.addLeaves(entry.unique_id, function(data){
-			$('#voteLeaves').text("Leave: "+ data.newleaves);
-			$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
-			$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
-		});
+		$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
+		$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
+		lioli.addLeaves(entry.unique_id, function(data){$('#voteLeaves').text("Leaves: "+ data.newleaves);});
 	});
 	$('#voteForLove').click(function() {
-		lioli.addLoves(entry.unique_id, function(data){
-			$('#voteLoves').text("Loves: "+ data.newloves);
-			$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
-			$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
-		});
+		$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
+		$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
+		lioli.addLoves(entry.unique_id, function(data){$('#voteLoves').text("Loves: "+ data.newloves);});
 	});
 }
-
+/*
+ * Needed for randomPage
+ */
+var randomEntries = Array();
+//initializes random entry page
+//
+$('#randomPage').live('pageshow', function(event) {
+	$("div#randomPage").unbind('swipeleft');
+	$("div#randomPage").bind('swipeleft',function(event, ui){
+		$.mobile.loadPage("#randomPage", { transition: "flip"});
+	});
+	$("div#randomPage").unbind('swiperight');
+	$("div#randomPage").bind('swiperight',function(event, ui){
+		$.mobile.loadPage("#randomPage", { transition: "flip", reverse: true});
+	});
+	
+	if (randomEntries.length == 0){
+		lioli.randomTen(function(data){
+			randomEntries = data;
+			setupRandomPage(randomEntries.shift());
+		});
+	} else {
+		setupRandomPage(randomEntries.shift());
+	}
+});
+//Sets up the random page.
+//
+var setupRandomPage = function(entry) {
+	$('#randomID').text('ID: '+entry.unique_id);
+	$('#randomAge').text("Age: "+entry.age);
+	$('#randomGender').text("Gender: "+entry.gender);
+	$('#randomLoves').text("Loves: "+entry.loves);
+	$('#randomBody').text(entry.body);
+	$('#randomLeaves').text("Leaves: " + entry.leaves);
+	
+	$('#randomLoves').hide();
+	$('#randomLeaves').hide();
+	
+	$('#randomForLeave').click(function() {
+		$('#randomForLeave').fadeOut('slow', function(){$('#randomLeaves').fadeIn('fast');});
+		$('#randomForLove').fadeOut('slow', function(){$('#randomLoves').fadeIn('fast');});
+		lioli.addLeaves(entry.unique_id, function(data){$('#randomLeaves').text("Leaves: "+ data.newleaves);});
+	});
+	$('#randomForLove').click(function() {
+		$('#randomForLeave').fadeOut('slow', function(){$('#randomLeaves').fadeIn('fast');});
+		$('#randomForLove').fadeOut('slow', function(){$('#randomLoves').fadeIn('fast');});
+		lioli.addLoves(entry.unique_id, function(data){$('#randomLoves').text("Loves: "+ data.newloves);});
+	});
+}
+/*
+ * Helpers for all pages.
+ */
 //checks if a varible has been set.  JS version of a php function
 //
 function isset(variable) {
