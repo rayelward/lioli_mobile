@@ -146,14 +146,16 @@ var injectMostRecents = function(entries) {
 	recentEntries = recentEntries.concat(entries);
 	$.each(entries, function(index, entry) {
 		entryNumber = (recentPageCount * 10) + index;
-		$('#recentsList').append('<li><a href="singleEntryPage.html?number=' + entryNumber + '" data-transition="pop"' +
-				'<p><strong>' + entry.body + '</strong></p>' +
+		var extra = (entry.body.length > 100) ? "..." : "";
+		$('#recentsList').append('<li><a href="singleEntryPage.html?number=' + entryNumber + 
+				'" data-transition="pop" style="white-space:normal" ' +
+				'<p><strong>'+entry.body.substring(0, 100)+extra+'</strong></p>' +
 				'<p><em>Age:' + entry.age + ' Gender:' + entry.gender + '</em></p>' +
 				'<p><strong>ID:' + entry.unique_id + '</strong></p>' +
 				'</a></li>');
 	});
 	recentPageCount += 1;
-	$('#recentsList').append('<li><a onclick="updateRecents();"><h2>Load more</h2></a></li>');
+	$('#recentsList').append('<li><a onclick="updateRecents();"><h2>Load more...</h2></a></li>');
 	$('#recentsList').listview('refresh');
 }
 //called when user asks to load more recent entries

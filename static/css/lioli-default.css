@@ -23,7 +23,7 @@
 	padding-right: 10px;
 }
 #entry-age, #entry-gender, .age-display, .gender-display {
-	color: #999;
+	color: black;
 	display: inline-block;
 }
 #entry-age, .age-display {
