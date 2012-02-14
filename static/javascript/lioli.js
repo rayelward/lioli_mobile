@@ -210,13 +210,17 @@ var setUpDetails = function(entry) {
 	$('#voteLeaves').hide();
 	
 	$('#voteForLeave').click(function() {
-		$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
-		$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
+		$('#voteForLeave').hide();
+		$('#voteForLove').hide();
+		$('#voteLeaves').show();
+		$('#voteLoves').show();
 		lioli.addLeaves(entry.unique_id, function(data){$('#voteLeaves').text("Leaves: "+ data.newleaves);});
 	});
 	$('#voteForLove').click(function() {
-		$('#voteForLeave').fadeOut('slow', function(){$('#voteLeaves').fadeIn('fast');});
-		$('#voteForLove').fadeOut('slow', function(){$('#voteLoves').fadeIn('fast');});
+		$('#voteForLeave').hide();
+		$('#voteForLove').hide();
+		$('#voteLeaves').show();
+		$('#voteLoves').show();
 		lioli.addLoves(entry.unique_id, function(data){$('#voteLoves').text("Loves: "+ data.newloves);});
 	});
 }
@@ -229,11 +233,11 @@ var randomEntries = Array();
 $('#randomPage').live('pageshow', function(event) {
 	$("div#randomPage").unbind('swipeleft');
 	$("div#randomPage").bind('swipeleft',function(event, ui){
-		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip'});
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'slide'});
 	});
 	$("div#randomPage").unbind('swiperight');
 	$("div#randomPage").bind('swiperight',function(event, ui){
-		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip', reverse: true});
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'slide', reverse: true});
 
 	});
 	
@@ -260,13 +264,17 @@ var setupRandomPage = function(entry) {
 	$('#randomLeaves').hide();
 	
 	$('#randomForLeave').click(function() {
-		$('#randomForLeave').fadeOut('slow', function(){$('#randomLeaves').fadeIn('fast');});
-		$('#randomForLove').fadeOut('slow', function(){$('#randomLoves').fadeIn('fast');});
+		$('#randomForLeave').hide();
+		$('#randomForLove').hide();
+		$('#randomLeaves').show();
+		$('#randomLoves').show();
 		lioli.addLeaves(entry.unique_id, function(data){$('#randomLeaves').text("Leaves: "+ data.newleaves);});
 	});
 	$('#randomForLove').click(function() {
-		$('#randomForLeave').fadeOut('slow', function(){$('#randomLeaves').fadeIn('fast');});
-		$('#randomForLove').fadeOut('slow', function(){$('#randomLoves').fadeIn('fast');});
+		$('#randomForLeave').hide();
+		$('#randomForLove').hide();
+		$('#randomLeaves').show();
+		$('#randomLoves').show();
 		lioli.addLoves(entry.unique_id, function(data){$('#randomLoves').text("Loves: "+ data.newloves);});
 	});
 	$('#nextButton').click(function() {

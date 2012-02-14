@@ -11,7 +11,7 @@
 		<div data-role="navbar" class="nav-lioli" data-grid="d">
 			<ul>
 				<li><a href="#recentsPage" id="recents" data-transition="fade" data-icon="custom">Recents</a></li>
-				<li><a href="#randomPage" class='ui-btn-active ui-state-persist' id="random" data-transition="fade" data-icon="custom">LIOLI</a></li>
+				<li><a href="#randomPage" class='ui-btn-active ui-state-persist' id="random" data-transition="fade" data-icon="custom">Random</a></li>
 				<li><a href="#searchPage" id="search" data-transition="fade" data-icon="custom">Search</a></li>
 				<li><a href="#submitPage" id="submit" data-transition="fade" data-icon="custom">Submit</a></li>
 				<li><a href="#aboutPage" id="about" data-transition="fade" data-icon="custom">About</a></li>
@@ -22,20 +22,26 @@
 
 	<div data-role="content">
 		<div id="randomDetails">
-			<span id="randomID" class="ID-display"></span> 
-			<span id="nextButton"><img width='70px' height='35px' src="./static/images/next2x.png" /></span>
+			<span id="randomID" class="ID-display"></span>
 			<br />
 			<span id="randomAge" class="age-display"></span>
 			<span id="randomGender" class="gender-display"></span>
 			<br />
+			<br />
+			<br />
 			<span id="randomBody" class="vote-display"></span>
 			<br />
-			
-			<img id="randomForLove" class='love-display' width='80px' height='34px' src="./static/images/love_button.png"></img>
-			<img id="randomForLeave" class='leave-display' width='80px' height='34px' src="./static/images/leave_button.png"></img>
-			<span id="randomLoves" class="love-display"></span>
-			<span id="randomLeaves" class="leave-display"></span>
 			<br />
+			<br />
+			<div id="voteWrapper">
+				<img id="randomForLove" class='love-display' width='140px' height='60px' src="./static/images/votebuttons/loveButton.png"></img>
+				<img id="randomForLeave" class='leave-display' width='140px' height='60px' src="./static/images/votebuttons/leaveButton.png"></img>
+				<span id="randomLoves" class="love-display"></span>
+				<span id="randomLeaves" class="leave-display"></span>
+			</div>
+			<div id="buttonWrapper">
+				<button id="nextButton">Next</button>
+			</div>
 		</div><!-- /randomDetails -->
 	</div><!-- /content -->
 

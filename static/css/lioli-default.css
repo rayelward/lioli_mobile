@@ -12,27 +12,33 @@
 /*Some styling for output of searching an entry.*/
 #entry-loves, .love-display {
 	color: #F3C;
+	font-size: 1.5em;
 	display: inline-block;
 	float: left;
-	padding-left: 10px;
+	padding-left: 2px;
 }
 #entry-leaves, .leave-display {
 	color: #6FF;
+	font-size: 1.5em;
 	display: inline-block;
 	float: right;
-	padding-right: 10px;
+	padding-right: 2px;
 }
 #entry-age, #entry-gender, .age-display, .gender-display {
-	color: black;
+	color: white;
+	font-size: 1.1em;
 	display: inline-block;
 }
 #entry-age, .age-display {
 	float: left;
 	padding-left: 10px;
 }
-#entry-gender, #nextButton, .gender-display {
+#entry-gender, .gender-display {
 	float: right;
 	padding-right: 10px;
+}
+#buttonWrapper {
+	padding-top: 70px;
 }
 
 /*for nav bar icons */
