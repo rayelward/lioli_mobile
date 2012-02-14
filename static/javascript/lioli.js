@@ -235,11 +235,6 @@ $('#randomPage').live('pageshow', function(event) {
 	$("div#randomPage").bind('swipeleft',function(event, ui){
 		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'slide'});
 	});
-	$("div#randomPage").unbind('swiperight');
-	$("div#randomPage").bind('swiperight',function(event, ui){
-		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'slide', reverse: true});
-
-	});
 	
 	if (randomEntries.length == 0){
 		lioli.randomTen(function(data){
@@ -278,7 +273,7 @@ var setupRandomPage = function(entry) {
 		lioli.addLoves(entry.unique_id, function(data){$('#randomLoves').text("Loves: "+ data.newloves);});
 	});
 	$('#nextButton').click(function() {
-		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'flip'});
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'swipe'});
 	});
 }
 /*
