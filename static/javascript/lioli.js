@@ -191,6 +191,9 @@ $('#singleEntryPage').live('pageshow', function(event) {
 		var newPageNumber = parseInt(number) + 1;
 		if ( isset(recentEntries[newPageNumber]) ){
 			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "slide"});
+		} else {
+			updateRecents();
+			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "slide"});
 		}
 	});
 	setUpDetails(entry);
@@ -272,9 +275,11 @@ var setupRandomPage = function(entry) {
 		$('#randomLoves').show();
 		lioli.addLoves(entry.unique_id, function(data){$('#randomLoves').text("Loves: "+ data.newloves);});
 	});
-	$('#nextButton').click(function() {
-		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'swipe'});
-	});
+}
+//function called onCick on the next button from random.
+//
+var nextButtonClick = function() {
+		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'slide'});
 }
 /*
  * Helpers for all pages.
@@ -299,8 +304,8 @@ function getUrlVars() {
 }
 //called when mobile is set up and ready to go.  Kinda like a $(document).ready(function(){});
 //
-$(document).bind("mobileinit", function() {
+$(document).ready(function() {
 	//allowing cross site access to lioli.net!
 	$.support.cors = true;
-	$.mobile.touchOverflowEnabled = true;
+	//$.mobile.touchOverflowEnabled = true;
 });
