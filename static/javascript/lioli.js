@@ -178,6 +178,8 @@ $("#recentsPage").live('pageinit', function(event) {
 $('#singleEntryPage').live('pageshow', function(event) {
 	var number = getUrlVars()["number"];
 	entry = recentEntries[number];
+	$('#voteForLeave').hide();
+	$('#voteForLove').hide();
 	
 	$("div#singleEntryPage").unbind('swiperight');
 	$("div#singleEntryPage").unbind('swipeleft');
@@ -208,6 +210,8 @@ var setUpDetails = function(entry) {
 	$('#voteLoves').text("Loves: "+entry.loves);
 	$('#voteBody').text(entry.body);
 	$('#voteLeaves').text("Leaves: " + entry.leaves);
+	$('#voteForLeave').show();
+	$('#voteForLove').show();
 	
 	$('#voteLoves').hide();
 	$('#voteLeaves').hide();
@@ -237,6 +241,8 @@ $('#randomPage').live('pageshow', function(event) {
 	$("div#randomPage").unbind('swipeleft');
 	$("div#randomPage").bind('swipeleft',function(event, ui){
 		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'slide'});
+	$('#randomForLove').hide();
+	$('#randomForLeave').hide();
 	});
 	
 	if (randomEntries.length == 0){
@@ -257,6 +263,8 @@ var setupRandomPage = function(entry) {
 	$('#randomLoves').text("Loves: "+entry.loves);
 	$('#randomBody').text(entry.body);
 	$('#randomLeaves').text("Leaves: " + entry.leaves);
+	$('#randomForLove').show();
+	$('#randomForLeave').show();
 	
 	$('#randomLoves').hide();
 	$('#randomLeaves').hide();
