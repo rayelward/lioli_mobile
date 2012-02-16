@@ -14,7 +14,8 @@ var lioli = {
 			url: baseUrl + "get_entry/" + escape(id),
 			cache: false,
 			success: function(data) {
-				callback(data);
+				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
+				callback(obj);
 			}
 		});
 	},
@@ -25,7 +26,8 @@ var lioli = {
 			url: baseUrl + "recents/" + page,
 			cache: false,
 			success: function(data) {
-				callback(data);
+				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
+				callback(obj);
 			}
 		});
 	},
@@ -36,7 +38,8 @@ var lioli = {
 			url: baseUrl + "add_loves/" + id,
 			cache: false,
 			success: function(data) {
-				callback(data);
+				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
+				callback(obj);
 			}
 		});
 	},
@@ -47,7 +50,8 @@ var lioli = {
 			url: baseUrl + "add_leaves/" + id,
 			cache: false,
 			success: function(data) {
-				callback(data);
+				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
+				callback(obj);
 			}
 		});
 	},
@@ -58,7 +62,8 @@ var lioli = {
 			url: baseUrl + "random_ten/",
 			cache: false,
 			success: function(data) {
-				callback(data);
+				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
+				callback(obj);
 			}
 		});
 	},
@@ -71,7 +76,8 @@ var lioli = {
 			type: "GET",
 			data: "body="+escape(body)+"&age="+age+"&gender="+gender,
 			success: function(data) {
-				callback(data);
+				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
+				callback(obj);
 			}
 		});
 	}
@@ -142,7 +148,7 @@ var recentEntries;
 var recentPageCount;
 //sets up the list of most recent entries.
 //
-var injectMostRecents = function(entries) {
+var injectMostRecents = function(entries, func) {
 	recentEntries = recentEntries.concat(entries);
 	$.each(entries, function(index, entry) {
 		entryNumber = (recentPageCount * 10) + index;
@@ -150,19 +156,23 @@ var injectMostRecents = function(entries) {
 		$('#recentsList').append('<li><a href="singleEntryPage.html?number=' + entryNumber + 
 				'" data-transition="pop" style="white-space:normal" ' +
 				'<p><strong>'+entry.body.substring(0, 100)+extra+'</strong></p>' +
+				'<br />' +
 				'<p><em>Age:' + entry.age + ' Gender:' + entry.gender + '</em></p>' +
 				'<p><strong>ID:' + entry.unique_id + '</strong></p>' +
 				'</a></li>');
 	});
 	recentPageCount += 1;
-	$('#recentsList').append('<li><a onclick="updateRecents();"><h2>Load more...</h2></a></li>');
+	$('#recentsList').append('<li><a onclick="updateRecents(function(){});"><h2>Load more...</h2></a></li>');
 	$('#recentsList').listview('refresh');
+	func();
 }
 //called when user asks to load more recent entries
 //
-var updateRecents = function() {
+var updateRecents = function(func) {
 	$('ul#recentsList li:last-child').remove();
-	lioli.getRecents(recentPageCount, injectMostRecents);
+	lioli.getRecents(recentPageCount, function(data){
+		injectMostRecents(data, func);
+	});
 }
 
 
@@ -194,8 +204,10 @@ $('#singleEntryPage').live('pageshow', function(event) {
 		if ( isset(recentEntries[newPageNumber]) ){
 			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "slide"});
 		} else {
-			updateRecents();
-			$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "slide"});
+			updateRecents(function(){
+				$.mobile.changePage("singleEntryPage.html?number="+newPageNumber, { transition: "slide"});
+			});
+			
 		}
 	});
 	setUpDetails(entry);
