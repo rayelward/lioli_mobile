@@ -16,6 +16,9 @@ var lioli = {
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('There was an error reaching the server.');
 			}
 		});
 	},
@@ -28,6 +31,9 @@ var lioli = {
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('There was an error reaching the server.');
 			}
 		});
 	},
@@ -40,6 +46,9 @@ var lioli = {
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('There was an error reaching the server.');
 			}
 		});
 	},
@@ -52,6 +61,9 @@ var lioli = {
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('There was an error reaching the server.');
 			}
 		});
 	},
@@ -64,6 +76,9 @@ var lioli = {
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('There was an error reaching the server.');
 			}
 		});
 	},
@@ -78,6 +93,9 @@ var lioli = {
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('There was an error reaching the server.');
 			}
 		});
 	}
@@ -148,7 +166,7 @@ var recentEntries;
 var recentPageCount;
 //sets up the list of most recent entries.
 //
-var injectMostRecents = function(entries, func) {
+var injectMostRecents = function(entries, callback) {
 	recentEntries = recentEntries.concat(entries);
 	$.each(entries, function(index, entry) {
 		entryNumber = (recentPageCount * 10) + index;
@@ -164,14 +182,14 @@ var injectMostRecents = function(entries, func) {
 	recentPageCount += 1;
 	$('#recentsList').append('<li><a onclick="updateRecents(function(){});"><h2>Load more...</h2></a></li>');
 	$('#recentsList').listview('refresh');
-	func();
+	callback
 }
 //called when user asks to load more recent entries
 //
-var updateRecents = function(func) {
+var updateRecents = function(callback) {
 	$('ul#recentsList li:last-child').remove();
 	lioli.getRecents(recentPageCount, function(data){
-		injectMostRecents(data, func);
+		injectMostRecents(data, callback);
 	});
 }
 
@@ -179,6 +197,8 @@ var updateRecents = function(func) {
 //init the recents page and we need to load it up with some data.
 //
 $("#recentsPage").live('pageinit', function(event) {
+	//$.mobile.touchOverflowEnabled = true;
+	$.support.cors = true;
 	recentEntries = new Array();
 	recentPageCount = 0;
 	lioli.getRecents(recentPageCount, injectMostRecents);
@@ -322,10 +342,4 @@ function getUrlVars() {
     }
     return vars;
 }
-//called when mobile is set up and ready to go.  Kinda like a $(document).ready(function(){});
-//
-$(document).ready(function() {
-	//allowing cross site access to lioli.net!
-	$.support.cors = true;
-	//$.mobile.touchOverflowEnabled = true;
-});
+
