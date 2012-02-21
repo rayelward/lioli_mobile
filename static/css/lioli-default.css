@@ -40,6 +40,9 @@
 #buttonWrapper {
 	padding-top: 70px;
 }
+#voteForLove, #voteForLeave, #randomForLove, #randomForLeave, #nextButton {
+	display:none;
+}
 
 /*for nav bar icons */
 .nav-lioli .ui-btn .ui-icon { 
@@ -73,3 +76,16 @@
 	background:  url(../images/tabbar/question-icon-white.png) 50% 50% no-repeat;  
 	background-size: 25px 20px;
 } 
+
+
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+.landscape, .landscape .ui-page, .portrait, .portrait .ui-page, .ui-content {
+	min-height: 100%;
+}

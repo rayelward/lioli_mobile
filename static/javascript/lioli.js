@@ -13,6 +13,7 @@ var lioli = {
 		$.ajax({
 			url: baseUrl + "get_entry/" + escape(id),
 			cache: false,
+			dataType: "json",
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
@@ -28,6 +29,7 @@ var lioli = {
 		$.ajax({
 			url: baseUrl + "recents/" + page,
 			cache: false,
+			dataType: "json",
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
@@ -43,6 +45,7 @@ var lioli = {
 		$.ajax({
 			url: baseUrl + "add_loves/" + id,
 			cache: false,
+			dataType: "json",
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
@@ -58,6 +61,7 @@ var lioli = {
 		$.ajax({
 			url: baseUrl + "add_leaves/" + id,
 			cache: false,
+			dataType: "json",
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
@@ -73,6 +77,7 @@ var lioli = {
 		$.ajax({
 			url: baseUrl + "random_ten/",
 			cache: false,
+			dataType: "json",
 			success: function(data) {
 				var obj = (typeof(data) == 'string') ? jQuery.parseJSON(data) : data;
 				callback(obj);
@@ -88,6 +93,7 @@ var lioli = {
 		$.ajax({
 			url: baseUrl + "submit/",
 			cache: false,
+			dataType: "json",
 			type: "GET",
 			data: "body="+escape(body)+"&age="+age+"&gender="+gender,
 			success: function(data) {
@@ -273,8 +279,6 @@ $('#randomPage').live('pageshow', function(event) {
 	$("div#randomPage").unbind('swipeleft');
 	$("div#randomPage").bind('swipeleft',function(event, ui){
 		$.mobile.changePage( "randomPage.html", {reloadPage: true, allowSamePageTranstion: true, transition: 'slide'});
-	$('#randomForLove').hide();
-	$('#randomForLeave').hide();
 	});
 	
 	if (randomEntries.length == 0){
@@ -297,6 +301,7 @@ var setupRandomPage = function(entry) {
 	$('#randomLeaves').text("Leaves: " + entry.leaves);
 	$('#randomForLove').show();
 	$('#randomForLeave').show();
+	$('#nextButton').show();
 	
 	$('#randomLoves').hide();
 	$('#randomLeaves').hide();
@@ -343,3 +348,36 @@ function getUrlVars() {
     return vars;
 }
 
+
+/*
+ * Helpers for having content fill the entire page.
+ */
+var fixgeometry = function() {
+	/* Some orientation changes leave the scroll position at something
+	 * that isn't 0,0. This is annoying for user experience. */
+	scroll(0, 0);
+
+	/* Calculate the geometry that our content area should take */
+	var header = $(".header:visible");
+	var footer = $(".footer:visible");
+	var content = $(".ui-content");
+	var viewport_height = $(window).height();
+
+	var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+
+	/* Trim margin/border/padding height */
+	content_height -= (content.outerHeight() - content.height());
+	content.css('min-height',content_height);
+}; /* fixgeometry */
+
+$(document).ready(function() {
+	$(window).bind("orientationchange pageshow", fixgeometry);
+});
+
+/*
+ * TODO: analytics.
+ */
+ 
+/*
+ * TODO: advertising.
+ */
