@@ -375,8 +375,24 @@ $(document).ready(function() {
 });
 
 /*
- * TODO: analytics.
+ * analytics.
  */
+ $('[data-role=page]').live('pageshow', function (event, ui) {
+    try {
+        _gaq.push(['_setAccount', 'UA-26980302-1']);
+
+        hash = location.hash;
+
+        if (hash) {
+            _gaq.push(['_trackPageview', hash.substr(1)]);
+        } else {
+            _gaq.push(['_trackPageview']);
+        }
+    } catch(err) {
+
+    }
+
+});
  
 /*
  * TODO: advertising.
