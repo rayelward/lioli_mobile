@@ -203,6 +203,10 @@ var updateRecents = function(callback) {
 //init the recents page and we need to load it up with some data.
 //
 $("#recentsPage").live('pageinit', function(event) {
+	$.event.special.swipe.scrollSupressionThreshold = 100;
+	$.event.special.swipe.durationThreshold = 1000;
+	$.event.special.swipe.horizontalDistanceThreshold = 175;
+	$.event.special.swipe.verticalDistanceThreshold = 30;
 	//$.mobile.touchOverflowEnabled = true;
 	$.support.cors = true;
 	recentEntries = new Array();
@@ -372,26 +376,24 @@ var fixgeometry = function() {
 
 $(document).ready(function() {
 	$(window).bind("orientationchange pageshow", fixgeometry);
+	
 });
 
 /*
  * analytics.
  */
- $('[data-role=page]').live('pageshow', function (event, ui) {
-    try {
-        _gaq.push(['_setAccount', 'UA-26980302-1']);
+$('[data-role=page]').live('pageshow', function (event, ui) {
+	try {
+		_gaq.push(['_setAccount', 'UA-26980302-1']);
 
-        hash = location.hash;
+		hash = location.hash;
 
-        if (hash) {
-            _gaq.push(['_trackPageview', hash.substr(1)]);
-        } else {
-            _gaq.push(['_trackPageview']);
-        }
-    } catch(err) {
-
-    }
-
+		if (hash) {
+			_gaq.push(['_trackPageview', hash.substr(1)]);
+		} else {
+			_gaq.push(['_trackPageview']);
+		}
+	} catch(err) { }
 });
  
 /*

@@ -89,3 +89,12 @@ body {
 .landscape, .landscape .ui-page, .portrait, .portrait .ui-page, .ui-content {
 	min-height: 100%;
 }
+.title {
+	background: transparent url(../images/bannerForApp.png) no-repeat;
+	width: 110%;
+	min-height: 39px;
+	margin-left: -20px;
+	border-bottom: 1px solid #A9A9A9;
+	padding-bottom: 5px;
+	
+}
