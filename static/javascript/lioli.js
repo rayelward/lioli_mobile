@@ -111,30 +111,32 @@ var lioli = {
  */
 //Validate submission data then sends it via ajax and responds with the unique_id
 //
-var entrySubmit = function() {
-	//hide submit button until request is done
-	$('#entry-submit').button('disable');
-	$('#submitResponse').text('');
-	var inBody = $('#body').val();
-	var inAge = $('#age').val();
-	var inGender = $('input:radio:checked').val();
-	if (inBody.length > 1200) {
-		$('#submitResponse').text('Your entry is too long, please keep it under 1200 characters.');
-		$('#entry-submit').button('enable');
-		return;
-	}
-	
-	//validate
-	if ((isset(inBody) && isset(inAge) && isset(inGender)) && inBody.length != 0){
-		lioli.submitEntry(inBody, inAge, inGender, function(data) {
-			var id = data.unique_id;
-			$('#submitResponse').text('Thank you.  Your id is '+id+'. Your entry awaits moderator approval.');
-		});
-	} else {
-		$('#submitResponse').text('Please fill out all the forms to submit.');
-	}
-	$('#entry-submit').button('enable');
-}
+$(function(){
+	$('button#entry-submit').click(function() {
+		//hide submit button until request is done
+		$('#entry-submit').addClass("ui-disabled");
+		$('#submitResponse').text('');
+		var inBody = $('#body').val();
+		var inAge = $('#age').val();
+		var inGender = $('input:radio:checked').val();
+		if (inBody.length > 1200) {
+			$('#submitResponse').text('Your entry is too long, please keep it under 1200 characters.');
+			$('#entry-submit').button('enable');
+			return;
+		}
+		
+		//validate
+		if ((isset(inBody) && isset(inAge) && isset(inGender)) && inBody.length != 0){
+			lioli.submitEntry(inBody, inAge, inGender, function(data) {
+				var id = data.unique_id;
+				$('#submitResponse').text('Thank you.  Your id is '+id+'. Your entry awaits moderator approval.');
+			});
+		} else {
+			$('#submitResponse').text('Please fill out all the forms to submit.');
+		}
+		setTimeout("$('#entry-submit').removeClass('ui-disabled')", 10000);
+	});
+});
 /*
  *needed for searchPage
  */
